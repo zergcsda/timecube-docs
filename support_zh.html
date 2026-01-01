@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技术支持 - 时光方块</title>
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --text: #212529;
+            --heading: #495057;
+            --accent: #667eea;
+            --border: #dee2e6;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #1a1a2e;
+                --text: #e9ecef;
+                --heading: #f8f9fa;
+                --accent: #7c8ce3;
+                --border: #495057;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--heading);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+            max-width: 600px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .footer {
+            margin-top: 4rem;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>技术支持</h1>
+    <p>在使用时光方块（TimeCube）的过程中遇到问题了吗？或者有新的功能建议？欢迎随时联系我们！</p>
+
+    <a href="mailto:davidvabi106@gmail.com" class="contact-btn">通过电子邮件联系我们</a>
+
+    <div class="footer">
+        <p>© 2025 时光方块。保留所有权利。</p>
+    </div>
+</body>
+
+</html>
