@@ -5,27 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TimeCube - Gamified Habits & Card Rewards</title>
-    <meta name="description" content="TimeCube is a gamified task manager that turns your goals into an adventure through a card-collecting reward system. Available on iOS, iPadOS, and watchOS.">
-    <meta name="keywords" content="habit tracker, task manager, gamification, productivity, iOS app, card collection, pomodoro">
+    <meta name="description"
+        content="TimeCube is a gamified task manager that turns your goals into an adventure through a card-collecting reward system. Available on iOS, iPadOS, and watchOS.">
+    <meta name="keywords"
+        content="habit tracker, task manager, gamification, productivity, iOS app, card collection, pomodoro">
 
     <!-- Open Graph -->
     <meta property="og:title" content="TimeCube - Gamified Habits & Card Rewards">
-    <meta property="og:description" content="Beat procrastination with gamification! Complete tasks, earn points, unlock mystery packs with 99+ collectible cards.">
+    <meta property="og:description"
+        content="Beat procrastination with gamification! Complete tasks, earn points, unlock mystery packs with 99+ collectible cards.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zergcsda.github.io/timecube-docs/">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/xx/xx/xx/icon.png/60x60bb.png">
+    <link rel="icon" type="image/png"
+        href="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/xx/xx/xx/icon.png/60x60bb.png">
 
     <style>
         :root {
             --primary: #667eea;
-            --primary-dark: #764ba2;
+            --primary-glow: rgba(102, 126, 234, 0.6);
             --accent: #FFD700;
-            --bg-dark: #1a1a2e;
-            --bg-light: #f8f9fa;
-            --text-dark: #212529;
-            --text-light: #e9ecef;
+            --bg-dark: #000000;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --text-main: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
         }
 
         * {
@@ -35,444 +40,630 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Animated Mesh Gradient Background */
+        .background-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 15% 50%, #4a1c40, transparent 25%),
+                radial-gradient(circle at 85% 30%, #1c2e4a, transparent 25%),
+                radial-gradient(circle at 50% 50%, #2a1b3d, transparent 50%);
+            background-size: 200% 200%;
+            animation: gradientMove 15s ease infinite alternate;
+        }
+
+        /* Glowing Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: #667eea;
+            top: -100px;
+            left: -100px;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: #764ba2;
+            bottom: 10%;
+            right: -50px;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: #FFD700;
+            top: 40%;
+            left: 30%;
+            opacity: 0.15;
+            animation-delay: -2s;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(30px, -30px);
+            }
+        }
+
+        /* Glass Utility */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 0.5em;
+            background: linear-gradient(180deg, #fff 0%, #ccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+            position: relative;
         }
 
-        .hero-content {
-            max-width: 800px;
+        .app-icon-wrapper {
+            position: relative;
+            margin-bottom: 40px;
         }
 
         .app-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            width: 140px;
+            height: 140px;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            z-index: 2;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 16px;
+        .app-icon-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            filter: blur(20px);
+            z-index: 1;
+            opacity: 0.8;
+            animation: pulse 3s infinite;
         }
 
-        .hero .tagline {
+        .app-icon:hover {
+            transform: scale(1.05) rotate(-3deg);
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        .hero-text {
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+
+        .tagline {
             font-size: 1.5rem;
-            opacity: 0.9;
-            margin-bottom: 32px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: block;
         }
 
-        .hero .description {
-            font-size: 1.1rem;
-            opacity: 0.85;
-            max-width: 600px;
-            margin: 0 auto 40px;
+        .download-btn {
+            display: inline-block;
+            transition: transform 0.2s, filter 0.2s;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.03);
+            filter: brightness(1.1);
         }
 
         .app-store-badge {
-            height: 54px;
-            transition: transform 0.2s;
-        }
-
-        .app-store-badge:hover {
-            transform: scale(1.05);
+            height: 60px;
         }
 
         /* Features Section */
         .features {
-            padding: 80px 20px;
-            background: var(--bg-light);
-        }
-
-        .features h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            color: var(--text-dark);
+            padding: 100px 0;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
         }
 
         .feature-card {
-            background: white;
             padding: 32px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s ease, background 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 16px;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
         }
 
         .feature-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             margin-bottom: 12px;
-            color: var(--primary);
-        }
-
-        .feature-card p {
-            color: #666;
-            font-size: 0.95rem;
+            color: #fff;
         }
 
         /* How It Works */
         .how-it-works {
-            padding: 80px 20px;
-            background: white;
+            padding: 100px 0;
         }
 
-        .how-it-works h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-        }
-
-        .steps {
+        .steps-container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
             gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
+            flex-wrap: wrap;
         }
 
-        .step {
+        .step-card {
+            flex: 1;
+            min-width: 220px;
+            max-width: 280px;
+            padding: 32px 20px;
             text-align: center;
-            padding: 20px;
+            position: relative;
         }
 
         .step-number {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 16px;
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.05);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            line-height: 1;
         }
 
-        .step h4 {
-            font-size: 1.1rem;
+        .step-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .step-card h4 {
+            font-size: 1.2rem;
             margin-bottom: 8px;
-        }
-
-        .step p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .step-arrow {
-            font-size: 2rem;
-            color: var(--primary);
+            color: var(--accent);
         }
 
         /* Pro Section */
         .pro-section {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #2d2d44 100%);
-            color: white;
             text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .pro-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
+        .pro-container {
+            background: linear-gradient(135deg, rgba(29, 29, 31, 0.8), rgba(20, 20, 22, 0.6));
+            padding: 60px 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
-        .pro-section .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.8;
-            margin-bottom: 40px;
+        .pro-badge {
+            background: linear-gradient(90deg, #FFD700, #FDB931);
+            color: #000;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            display: inline-block;
         }
 
-        .pro-features {
+        .pro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px auto;
+            max-width: 900px;
+        }
+
+        .pro-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 16px;
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            max-width: 800px;
-            margin: 0 auto 40px;
-        }
-
-        .pro-feature {
-            display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 16px 24px;
-            border-radius: 12px;
         }
 
-        .pro-feature-icon {
-            font-size: 1.5rem;
-            color: var(--accent);
-        }
-
-        .subscription-info {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 24px;
-            border-radius: 12px;
-            max-width: 600px;
-            margin: 0 auto;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .subscription-info a {
-            color: var(--accent);
-        }
-
-        /* Platforms */
-        .platforms {
-            padding: 60px 20px;
-            background: var(--bg-light);
-            text-align: center;
-        }
-
-        .platforms h2 {
+        .pro-item span:first-child {
             font-size: 2rem;
-            margin-bottom: 40px;
+        }
+
+        .subscription-details {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .subscription-details a {
+            color: var(--text-main);
+            text-decoration: underline;
+            margin: 0 8px;
+            transition: color 0.2s;
+        }
+
+        .subscription-details a:hover {
+            color: var(--accent);
+        }
+
+        /* Available On */
+        .platforms-section {
+            padding: 60px 0;
+            text-align: center;
         }
 
         .platform-icons {
             display: flex;
             justify-content: center;
-            gap: 60px;
+            gap: 40px;
+            margin-top: 32px;
             flex-wrap: wrap;
         }
 
-        .platform {
-            text-align: center;
+        .platform-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
         }
 
-        .platform-icon {
-            font-size: 3rem;
-            margin-bottom: 12px;
+        .platform-item:hover {
+            opacity: 1;
+        }
+
+        .platform-item span {
+            font-size: 2.5rem;
         }
 
         /* Footer */
         footer {
-            padding: 40px 20px;
-            background: var(--bg-dark);
-            color: var(--text-light);
+            padding: 60px 20px;
             text-align: center;
-        }
-
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-            margin: 0 16px;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
         }
 
         .footer-links {
-            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
         }
 
         .copyright {
-            opacity: 0.6;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
         }
 
-        /* Responsive */
+        /* Animations on Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
+            h1 {
+                font-size: 2.5rem;
             }
 
-            .hero .tagline {
-                font-size: 1.2rem;
+            .hero {
+                padding-top: 100px;
             }
 
-            .step-arrow {
-                display: none;
-            }
-
-            .features h2,
-            .how-it-works h2,
-            .pro-section h2 {
-                font-size: 1.8rem;
+            .feature-card {
+                padding: 24px;
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c2/c8/5e/c2c85e34-2c04-b95b-0817-e9af4ccf3cd9/AppIcon-0-0-1x_U007epad-0-1-85-220.png/460x0w.webp"
-                 alt="TimeCube App Icon"
-                 class="app-icon">
-            <h1>TimeCube</h1>
-            <p class="tagline">Gamified Habits & Card Rewards</p>
-            <p class="description">
-                Beat procrastination with gamification! Complete tasks, earn points,
-                unlock mystery packs with 99+ collectible cards. Every completion is a small win.
-            </p>
-            <a href="https://apps.apple.com/app/timecube/id6740047491" target="_blank">
+    <div class="background-mesh"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="app-icon-wrapper reveal active">
+                <div class="app-icon-glow"></div>
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c2/c8/5e/c2c85e34-2c04-b95b-0817-e9af4ccf3cd9/AppIcon-0-0-1x_U007epad-0-1-85-220.png/460x0w.webp"
+                    alt="TimeCube App Icon" class="app-icon">
+            </div>
+
+            <div class="hero-text reveal">
+                <h1>TimeCube</h1>
+                <span class="tagline">Gamified Habits & Card Rewards</span>
+                <p>Beat procrastination with gamification! Complete tasks, earn points, and unlock mystery packs with
+                    99+ collectible cards. Turn your productivity into an adventure.</p>
+            </div>
+
+            <a href="https://apps.apple.com/app/timecube/id6740047491" target="_blank" class="download-btn reveal">
                 <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83"
-                     alt="Download on the App Store"
-                     class="app-store-badge">
+                    alt="Download on the App Store" class="app-store-badge">
             </a>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <h2>Why TimeCube?</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">📋</div>
-                <h3>Smart Task Management</h3>
-                <p>Flexible templates for workdays, weekends, and rest days. Recurring tasks auto-generate daily habits without repetitive setup.</p>
+        <!-- Features Grid -->
+        <section class="container features">
+            <h2 class="reveal">Why TimeCube?</h2>
+            <div class="features-grid">
+                <div class="feature-card glass reveal">
+                    <div class="feature-icon">📋</div>
+                    <h3>Smart Tasks</h3>
+                    <p>Flexible templates for work, weekends, and rest days. Recurring tasks auto-generate habits.</p>
+                </div>
+                <div class="feature-card glass reveal">
+                    <div class="feature-icon">🎴</div>
+                    <h3>Card Collection</h3>
+                    <p>Collect 99+ unique cards across 6 rarity tiers. Every pack opening is a dopamine-filled surprise.
+                    </p>
+                </div>
+                <div class="feature-card glass reveal">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Focus Timer</h3>
+                    <p>Pomodoro with Live Activities on your Lock Screen. Stay in the zone with ambient soundscapes.</p>
+                </div>
+                <div class="feature-card glass reveal">
+                    <div class="feature-icon">🎁</div>
+                    <h3>Custom Rewards</h3>
+                    <p>Define your own incentives. Create "Wish Cards" and use your points to make them reality.</p>
+                </div>
+                <div class="feature-card glass reveal">
+                    <div class="feature-icon">🏦</div>
+                    <h3>Time Bank</h3>
+                    <p>Save points and earn daily interest. Master the art of delayed gratification.</p>
+                </div>
+                <div class="feature-card glass reveal">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Discipline Mode</h3>
+                    <p>PIN protection and confirmation systems to prevent impulse changes and keep you on track.</p>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎴</div>
-                <h3>Card Collection</h3>
-                <p>99+ beautiful cards across 6 rarity tiers. Every mystery pack opening is a surprise—a collector's paradise.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⏱️</div>
-                <h3>Focus Timer</h3>
-                <p>Built-in Pomodoro with Lock Screen Live Activities. Stay focused with ambient sounds and dynamic backgrounds.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎁</div>
-                <h3>Custom Rewards</h3>
-                <p>Set your own incentives—breaks, treats, entertainment. Write wishes and work toward making them real.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🏦</div>
-                <h3>Time Bank</h3>
-                <p>Save points and earn daily interest. Master the art of delayed gratification with our unique banking system.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Discipline Mode</h3>
-                <p>PIN protection prevents impulsive changes. Task approval requires confirmation—make a contract with yourself.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- How It Works -->
-    <section class="how-it-works">
-        <h2>How It Works</h2>
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h4>Complete Tasks</h4>
-                <p>Check off daily habits and goals</p>
+        <!-- How It Works -->
+        <section class="container how-it-works">
+            <h2 class="reveal">How It Works</h2>
+            <div class="steps-container">
+                <div class="step-card glass reveal">
+                    <span class="step-number">01</span>
+                    <span class="step-icon">✅</span>
+                    <h4>Complete Tasks</h4>
+                    <p>Check off daily habits</p>
+                </div>
+                <div class="step-card glass reveal">
+                    <span class="step-number">02</span>
+                    <span class="step-icon">💎</span>
+                    <h4>Earn Points</h4>
+                    <p>Get rewarded for effort</p>
+                </div>
+                <div class="step-card glass reveal">
+                    <span class="step-number">03</span>
+                    <span class="step-icon">📦</span>
+                    <h4>Open Packs</h4>
+                    <p>Unlock mystery cards</p>
+                </div>
+                <div class="step-card glass reveal">
+                    <span class="step-number">04</span>
+                    <span class="step-icon">🎉</span>
+                    <h4>Redeem</h4>
+                    <p>Exchange for real rewards</p>
+                </div>
             </div>
-            <span class="step-arrow">→</span>
-            <div class="step">
-                <div class="step-number">2</div>
-                <h4>Earn Points</h4>
-                <p>Get rewarded for your effort</p>
-            </div>
-            <span class="step-arrow">→</span>
-            <div class="step">
-                <div class="step-number">3</div>
-                <h4>Open Packs</h4>
-                <p>Unlock mystery card packs</p>
-            </div>
-            <span class="step-arrow">→</span>
-            <div class="step">
-                <div class="step-number">4</div>
-                <h4>Redeem Rewards</h4>
-                <p>Exchange points for real rewards</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Pro Section -->
-    <section class="pro-section">
-        <h2>TimeCube Pro</h2>
-        <p class="subtitle">Unlock your full potential</p>
+        <!-- Pro Section -->
+        <section class="container pro-section">
+            <div class="glass pro-container reveal">
+                <span class="pro-badge">TimeCube Pro</span>
+                <h2>Unlock Full Potential</h2>
+                <div class="pro-grid">
+                    <div class="pro-item">
+                        <span>🎴</span>
+                        <span>Unlock All Cards</span>
+                    </div>
+                    <div class="pro-item">
+                        <span>⭐</span>
+                        <span>Unlimited Wishes</span>
+                    </div>
+                    <div class="pro-item">
+                        <span>📋</span>
+                        <span>Premium Templates</span>
+                    </div>
+                    <div class="pro-item">
+                        <span>🎨</span>
+                        <span>Exclusive Themes</span>
+                    </div>
+                </div>
 
-        <div class="pro-features">
-            <div class="pro-feature">
-                <span class="pro-feature-icon">🎴</span>
-                <span>All Cards Unlocked</span>
+                <div class="subscription-details">
+                    <p>Monthly / Yearly Subscriptions</p>
+                    <p style="margin: 8px 0; opacity: 0.7; font-size: 0.8rem;">Auto-renews. Cancel anytime via Apple ID
+                        settings.</p>
+                    <div>
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms of Use</a>
+                    </div>
+                </div>
             </div>
-            <div class="pro-feature">
-                <span class="pro-feature-icon">⭐</span>
-                <span>Unlimited Wish Cards</span>
-            </div>
-            <div class="pro-feature">
-                <span class="pro-feature-icon">📋</span>
-                <span>Premium Templates</span>
-            </div>
-            <div class="pro-feature">
-                <span class="pro-feature-icon">🎨</span>
-                <span>Exclusive Themes</span>
-            </div>
-        </div>
+        </section>
 
-        <div class="subscription-info">
-            <p><strong>Subscription Options:</strong> Monthly / Yearly</p>
-            <p>Payment charged to Apple ID upon confirmation. Auto-renews 24 hours before expiration; cancel anytime.</p>
-            <p style="margin-top: 12px;">
-                <a href="privacy.html">Privacy Policy</a> ·
-                <a href="terms.html">Terms of Use</a>
-            </p>
-        </div>
-    </section>
-
-    <!-- Platforms -->
-    <section class="platforms">
-        <h2>Available On</h2>
-        <div class="platform-icons">
-            <div class="platform">
-                <div class="platform-icon">📱</div>
-                <p>iPhone</p>
+        <!-- Platforms -->
+        <section class="platforms-section reveal">
+            <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; opacity: 0.6;">Available On</p>
+            <div class="platform-icons">
+                <div class="platform-item">
+                    <span>📱</span>
+                    <small>iPhone</small>
+                </div>
+                <div class="platform-item">
+                    <span>📲</span>
+                    <small>iPad</small>
+                </div>
+                <div class="platform-item">
+                    <span>⌚</span>
+                    <small>Watch</small>
+                </div>
             </div>
-            <div class="platform">
-                <div class="platform-icon">📲</div>
-                <p>iPad</p>
-            </div>
-            <div class="platform">
-                <div class="platform-icon">⌚</div>
-                <p>Apple Watch</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -484,6 +675,24 @@
         </div>
         <p class="copyright">© 2025 TimeCube. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Simple scroll reveal animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+    </script>
 </body>
 
 </html>
