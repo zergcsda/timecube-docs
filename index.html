@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeCube - Gamified Habits & Card Rewards</title>
+    <meta name="description" content="TimeCube is a gamified task manager that turns your goals into an adventure through a card-collecting reward system. Available on iOS, iPadOS, and watchOS.">
+    <meta name="keywords" content="habit tracker, task manager, gamification, productivity, iOS app, card collection, pomodoro">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="TimeCube - Gamified Habits & Card Rewards">
+    <meta property="og:description" content="Beat procrastination with gamification! Complete tasks, earn points, unlock mystery packs with 99+ collectible cards.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zergcsda.github.io/timecube-docs/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/xx/xx/xx/icon.png/60x60bb.png">
+
+    <style>
+        :root {
+            --primary: #667eea;
+            --primary-dark: #764ba2;
+            --accent: #FFD700;
+            --bg-dark: #1a1a2e;
+            --bg-light: #f8f9fa;
+            --text-dark: #212529;
+            --text-light: #e9ecef;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 32px;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .app-store-badge {
+            height: 54px;
+            transition: transform 0.2s;
+        }
+
+        .app-store-badge:hover {
+            transform: scale(1.05);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            background: var(--bg-light);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--text-dark);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 16px;
+        }
+
+        .step h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .step-arrow {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        /* Pro Section */
+        .pro-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #2d2d44 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .pro-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .pro-section .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        .pro-features {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .pro-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 16px 24px;
+            border-radius: 12px;
+        }
+
+        .pro-feature-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .subscription-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 24px;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .subscription-info a {
+            color: var(--accent);
+        }
+
+        /* Platforms */
+        .platforms {
+            padding: 60px 20px;
+            background: var(--bg-light);
+            text-align: center;
+        }
+
+        .platforms h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .platform-icons {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .platform {
+            text-align: center;
+        }
+
+        .platform-icon {
+            font-size: 3rem;
+            margin-bottom: 12px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 20px;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            margin: 0 16px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .copyright {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .step-arrow {
+                display: none;
+            }
+
+            .features h2,
+            .how-it-works h2,
+            .pro-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c2/c8/5e/c2c85e34-2c04-b95b-0817-e9af4ccf3cd9/AppIcon-0-0-1x_U007epad-0-1-85-220.png/460x0w.webp"
+                 alt="TimeCube App Icon"
+                 class="app-icon">
+            <h1>TimeCube</h1>
+            <p class="tagline">Gamified Habits & Card Rewards</p>
+            <p class="description">
+                Beat procrastination with gamification! Complete tasks, earn points,
+                unlock mystery packs with 99+ collectible cards. Every completion is a small win.
+            </p>
+            <a href="https://apps.apple.com/app/timecube/id6740047491" target="_blank">
+                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83"
+                     alt="Download on the App Store"
+                     class="app-store-badge">
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Why TimeCube?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Smart Task Management</h3>
+                <p>Flexible templates for workdays, weekends, and rest days. Recurring tasks auto-generate daily habits without repetitive setup.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎴</div>
+                <h3>Card Collection</h3>
+                <p>99+ beautiful cards across 6 rarity tiers. Every mystery pack opening is a surprise—a collector's paradise.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⏱️</div>
+                <h3>Focus Timer</h3>
+                <p>Built-in Pomodoro with Lock Screen Live Activities. Stay focused with ambient sounds and dynamic backgrounds.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎁</div>
+                <h3>Custom Rewards</h3>
+                <p>Set your own incentives—breaks, treats, entertainment. Write wishes and work toward making them real.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏦</div>
+                <h3>Time Bank</h3>
+                <p>Save points and earn daily interest. Master the art of delayed gratification with our unique banking system.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Discipline Mode</h3>
+                <p>PIN protection prevents impulsive changes. Task approval requires confirmation—make a contract with yourself.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Complete Tasks</h4>
+                <p>Check off daily habits and goals</p>
+            </div>
+            <span class="step-arrow">→</span>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Earn Points</h4>
+                <p>Get rewarded for your effort</p>
+            </div>
+            <span class="step-arrow">→</span>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Open Packs</h4>
+                <p>Unlock mystery card packs</p>
+            </div>
+            <span class="step-arrow">→</span>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Redeem Rewards</h4>
+                <p>Exchange points for real rewards</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pro Section -->
+    <section class="pro-section">
+        <h2>TimeCube Pro</h2>
+        <p class="subtitle">Unlock your full potential</p>
+
+        <div class="pro-features">
+            <div class="pro-feature">
+                <span class="pro-feature-icon">🎴</span>
+                <span>All Cards Unlocked</span>
+            </div>
+            <div class="pro-feature">
+                <span class="pro-feature-icon">⭐</span>
+                <span>Unlimited Wish Cards</span>
+            </div>
+            <div class="pro-feature">
+                <span class="pro-feature-icon">📋</span>
+                <span>Premium Templates</span>
+            </div>
+            <div class="pro-feature">
+                <span class="pro-feature-icon">🎨</span>
+                <span>Exclusive Themes</span>
+            </div>
+        </div>
+
+        <div class="subscription-info">
+            <p><strong>Subscription Options:</strong> Monthly / Yearly</p>
+            <p>Payment charged to Apple ID upon confirmation. Auto-renews 24 hours before expiration; cancel anytime.</p>
+            <p style="margin-top: 12px;">
+                <a href="privacy.html">Privacy Policy</a> ·
+                <a href="terms.html">Terms of Use</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Platforms -->
+    <section class="platforms">
+        <h2>Available On</h2>
+        <div class="platform-icons">
+            <div class="platform">
+                <div class="platform-icon">📱</div>
+                <p>iPhone</p>
+            </div>
+            <div class="platform">
+                <div class="platform-icon">📲</div>
+                <p>iPad</p>
+            </div>
+            <div class="platform">
+                <div class="platform-icon">⌚</div>
+                <p>Apple Watch</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="support.html">Support</a>
+            <a href="mailto:davidvabi106@gmail.com">Contact</a>
+        </div>
+        <p class="copyright">© 2025 TimeCube. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
