@@ -1,98 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support - TimeCube</title>
-    <style>
-        :root {
-            --bg: #f8f9fa;
-            --text: #212529;
-            --heading: #495057;
-            --accent: #667eea;
-            --border: #dee2e6;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #1a1a2e;
-                --text: #e9ecef;
-                --heading: #f8f9fa;
-                --accent: #7c8ce3;
-                --border: #495057;
-            }
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-
-        h1 {
-            color: var(--heading);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--text);
-            max-width: 600px;
-        }
-
-        .contact-btn {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: transform 0.2s, opacity 0.2s;
-        }
-
-        .contact-btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-
-        .footer {
-            margin-top: 4rem;
-            font-size: 0.9rem;
-            color: var(--accent);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support - TimeCube</title>
+<meta name="description" content="TimeCube support: email support@keepsub.com">
+<style>
+:root { --bg:#f8f9fa;--text:#212529;--muted:#5c636a;--accent:#5b6ee1;--card:#ffffff;--border:#dee2e6;--btn:#667eea;--btn-text:#fff;}
+@media (prefers-color-scheme: dark){:root{--bg:#1a1a2e;--text:#e9ecef;--muted:#adb5bd;--accent:#8e9cf0;--card:#23233b;--border:#3a3a55;--btn:#7c8ce3;--btn-text:#fff;} }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "PingFang SC", sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.65; padding: 28px 16px 64px; }
+.wrap { max-width: 760px; margin: 0 auto; }
+header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 48px; }
+header strong { font-size: 1.05rem; }
+nav a { color: var(--accent); text-decoration: none; margin-left: 18px; font-size: .95rem; }
+nav a:first-child { margin-left: 0; }
+h1 { font-size: clamp(2rem, 6vw, 2.8rem); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 14px; }
+.lead { color: var(--muted); font-size: 1.12rem; margin-bottom: 30px; max-width: 620px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 26px; margin-bottom: 22px; }
+.email { font-size: clamp(1.3rem, 5vw, 1.75rem); font-weight: 700; letter-spacing: -0.01em; word-break: break-all; margin: 6px 0 20px; }
+.email a { color: var(--text); text-decoration: none; }
+.small { color: var(--muted); font-size: .95rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; border-radius: 999px;
+  font-weight: 650; font-size: 1rem; text-decoration: none; cursor: pointer; border: 0; font-family: inherit; }
+.primary { background: var(--btn); color: var(--btn-text); }
+.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+h2 { font-size: 1.1rem; margin-bottom: 12px; }
+ol { padding-left: 1.3em; color: var(--muted); }
+ol li { margin: 6px 0; }
+footer { margin-top: 40px; color: var(--muted); font-size: .85rem; }
+</style>
 </head>
-
 <body>
-    <h1>Support</h1>
-    <p>Need help with TimeCube? Have a feature request or found a bug? We're here to help!</p>
-
-    <a href="mailto:davidvabi106@gmail.com" class="contact-btn">Contact Support via Email</a>
-
-    <div class="footer">
-        <p>© 2025 TimeCube. All rights reserved.</p>
-    </div>
+<div class="wrap">
+<header><strong>TimeCube</strong><nav><a href="index.html">Home</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="support_zh.html">中文</a></nav></header>
+<h1>We’re here to help</h1>
+<p class="lead">Ran into a problem with TimeCube, or have an idea to make it better? Email us — every message is read by the people who build the app.</p>
+<section class="card">
+  <p class="small">Or write to us directly:</p>
+  <p class="email"><a href="mailto:support@keepsub.com">support@keepsub.com</a></p>
+  <div class="actions">
+    <a class="btn primary" href="mailto:support@keepsub.com?subject=TimeCube%20Support&amp;body=App%3A%20TimeCube%0AApp%20version%3A%0ADevice%3A%0AiOS%20version%3A%0A%0AWhat%20happened%3A%0A%0ASteps%20to%20reproduce%3A%0A1.%0A2.%0A3.%0A">Email Support</a>
+    <button class="btn ghost" id="copy" type="button">Copy address</button>
+  </div>
+</section>
+<section class="card">
+  <h2>To help us fix it fast, please include:</h2>
+  <ol><li>The app version (you can find it on the App Store page or in Settings)</li><li>Your device model and iOS / iPadOS version</li><li>What happened, and what you expected to happen</li><li>Steps to reproduce the problem, if you can</li><li>Screenshots or a short screen recording, if possible</li></ol>
+</section>
+<p class="small">We reply to every email as soon as we can.</p>
+<footer>© 2026 TimeCube</footer>
+</div>
+<script>
+document.getElementById('copy').addEventListener('click', function () {
+  var b = this, done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy address'; }, 1600); };
+  if (navigator.clipboard) { navigator.clipboard.writeText('support@keepsub.com').then(done, function () { window.location.href = 'mailto:support@keepsub.com'; }); }
+  else { window.location.href = 'mailto:support@keepsub.com'; }
+});
+</script>
 </body>
-
 </html>
